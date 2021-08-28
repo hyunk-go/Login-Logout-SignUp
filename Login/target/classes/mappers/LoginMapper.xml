@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.login.dao.LoginDao">
+  
+  <insert id="signUp" parameterType="com.example.login.dto.UserDto">
+  INSERT INTO User(id, pw)
+  VALUES (#{id}, #{pw})
+  </insert>
+  
+  <select id="idCheck" parameterType="String" resultType="boolean">
+  SELECT EXISTS(SELECT id FROM User WHERE id=#{id} limit 1) as success
+  </select>
+  
+  <select id="pwCheck" resultType="String">
+  SELECT pw
+  FROM User
+  WHERE id=#{id}
+  </select>
+  
+</mapper>
